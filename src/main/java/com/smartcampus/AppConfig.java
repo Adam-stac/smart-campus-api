@@ -1,5 +1,6 @@
 package com.smartcampus;
 
+import com.smartcampus.resource.DiscoveryResource;
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
 import java.util.HashSet;
@@ -10,6 +11,8 @@ public class AppConfig extends Application {
 
     @Override
     public Set<Class<?>> getClasses() {
-        return new HashSet<>();
+        Set<Class<?>> classes = new HashSet<>();
+        classes.add(DiscoveryResource.class);
+        return classes;
     }
 }
