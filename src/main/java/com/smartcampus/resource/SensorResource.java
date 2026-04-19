@@ -37,4 +37,22 @@ public class SensorResource {
         DataStore.getRooms().get(sensor.getRoomId()).getSensorIds().add(id);
         return Response.status(Response.Status.CREATED).entity(sensor).build();
     }
+
+    @GET
+    @Path("/{sensorId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getSensorById(@PathParam("sensorId") String sensorId) {
+        Sensor sensor = DataStore.getSensors().get(sensorId);
+        if (sensor == null) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity("{\"error\": \"Sensor not found\"}")
+                    .build();
+        }
+        return Response.ok(sensor).build();
+    }
+
+    @Path("{sensorId}/readings")
+    public SensorReadingResource getReadingResource(@PathParam("sensorId") String sensorId) {
+        return new SensorReadingResource(sensorId);
+    }
 }
