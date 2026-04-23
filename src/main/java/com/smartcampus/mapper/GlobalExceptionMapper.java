@@ -4,7 +4,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -16,7 +16,7 @@ public class GlobalExceptionMapper implements ExceptionMapper<Throwable> {
     @Override
     public Response toResponse(Throwable e) {
         LOGGER.severe("Unexpected error: " + e.getMessage());
-        Map<String, Object> error = new HashMap<>();
+        Map<String, Object> error = new LinkedHashMap<>();
         error.put("status", 500);
         error.put("error", "Internal Server Error");
         error.put("message", "An unexpected error occurred. Please try again later.");

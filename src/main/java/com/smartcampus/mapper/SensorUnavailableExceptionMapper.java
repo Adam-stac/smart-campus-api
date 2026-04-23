@@ -5,7 +5,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Provider
@@ -13,7 +13,7 @@ public class SensorUnavailableExceptionMapper implements ExceptionMapper<SensorU
 
     @Override
     public Response toResponse(SensorUnavailableException e) {
-        Map<String, Object> error = new HashMap<>();
+        Map<String, Object> error = new LinkedHashMap<>();
         error.put("status", 403);
         error.put("error", "Forbidden");
         error.put("message", e.getMessage());
