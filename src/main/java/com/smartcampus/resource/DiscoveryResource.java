@@ -26,4 +26,11 @@ public class DiscoveryResource {
 
         return Response.ok(info).build();
     }
+
+    @GET
+    @Path("/test-500")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response triggerError() {
+        throw new NullPointerException("Simulated unexpected error");
+    }
 }

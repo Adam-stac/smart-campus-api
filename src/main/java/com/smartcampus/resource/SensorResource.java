@@ -51,6 +51,21 @@ public class SensorResource {
         return Response.ok(sensor).build();
     }
 
+    @DELETE
+    @Path("/{sensorId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteSensor(@PathParam("sensorId") String sensorId) {
+        Sensor sensor = DataStore.getSensors().get(sensorId);
+        if (sensor == null) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity("{\"error\": \"Sensor not found\"}")
+                    .build();
+        }
+        DataStore.getSensors().remove(sensorId);
+        DataStore.getRooms().get(sensor.getRoomId()).getSensorIds().remove(sensorId);
+        return Response.noContent().build();
+    }
+
     @Path("{sensorId}/readings")
     public SensorReadingResource getReadingResource(@PathParam("sensorId") String sensorId) {
         return new SensorReadingResource(sensorId);
