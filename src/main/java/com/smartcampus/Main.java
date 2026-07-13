@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         ResourceConfig config = new ResourceConfig()
-                .packages("com.smartcampus.resource", "com.smartcampus.mapper");
+                .packages("com.smartcampus.resource", "com.smartcampus.mapper", "com.smartcampus.security");
 
         HttpServer server = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), config);
 
