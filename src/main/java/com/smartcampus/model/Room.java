@@ -1,13 +1,23 @@
 package com.smartcampus.model;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Room {
 
     private String id;
+
+    @NotBlank(message = "Room name must not be blank")
     private String name;
+
+    @Min(value = 1, message = "Capacity must be at least 1")
+    @Max(value = 5000, message = "Capacity must not exceed 5000")
     private int capacity;
+
     private List<String> sensorIds = new ArrayList<>();
 
     public Room() {}

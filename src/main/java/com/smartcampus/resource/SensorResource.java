@@ -6,6 +6,7 @@ import com.smartcampus.model.Sensor;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import jakarta.validation.Valid;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class SensorResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createSensor(Sensor sensor) {
+    public Response createSensor(@Valid Sensor sensor) {
         if (!DataStore.getRooms().containsKey(sensor.getRoomId())) {
             throw new LinkedResourceNotFoundException("Room with ID " + sensor.getRoomId() + " does not exist.");
         }

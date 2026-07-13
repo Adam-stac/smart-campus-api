@@ -7,6 +7,7 @@ import com.smartcampus.model.SensorReading;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import jakarta.validation.Valid;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class SensorReadingResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addReading(SensorReading reading) {
+    public Response addReading(@Valid SensorReading reading) {
         Sensor sensor = DataStore.getSensors().get(sensorId);
         if (sensor == null) {
             return Response.status(Response.Status.NOT_FOUND)

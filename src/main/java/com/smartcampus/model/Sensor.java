@@ -1,11 +1,22 @@
 package com.smartcampus.model;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
 public class Sensor {
 
     private String id;
+
+    @NotBlank(message = "Sensor type must not be blank")
     private String type;
+
+    @NotBlank(message = "Sensor status must not be blank")
+    @Pattern(regexp = "ACTIVE|INACTIVE|MAINTENANCE", message = "Status must be ACTIVE, INACTIVE or MAINTENANCE")
     private String status;
+
     private double currentValue;
+
+    @NotBlank(message = "Room ID must not be blank")
     private String roomId;
 
     public Sensor() {

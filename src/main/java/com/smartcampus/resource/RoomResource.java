@@ -6,6 +6,7 @@ import com.smartcampus.model.Room;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import jakarta.validation.Valid;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class RoomResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createRoom(Room room) {
+    public Response createRoom(@Valid Room room) {
         String id = "ROOM-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         room.setId(id);
         DataStore.getRooms().put(id, room);

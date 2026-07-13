@@ -1,15 +1,19 @@
 package com.smartcampus.model;
 
+import jakarta.validation.constraints.NotNull;
+
 public class SensorReading {
 
     private String id;
     private long timestamp;
-    private double value;
+
+    @NotNull(message = "Reading value must not be null")
+    private Double value;
 
     public SensorReading() {
     }
 
-    public SensorReading(String id, long timestamp, double value) {
+    public SensorReading(String id, long timestamp, Double value) {
         this.id = id;
         this.timestamp = timestamp;
         this.value = value;
@@ -31,11 +35,11 @@ public class SensorReading {
         this.timestamp = timestamp;
     }
 
-    public double getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(double value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 }
